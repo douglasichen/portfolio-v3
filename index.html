@@ -8,7 +8,7 @@
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Instrument+Serif:ital@0;1&family=Inter:wght@300..600&family=Space+Grotesk:wght@300..600&family=JetBrains+Mono:wght@300..500&family=EB+Garamond:ital,wght@0,400..600;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Lora:ital,wght@0,400..600;1,400..600&family=Playfair+Display:ital,wght@0,400..600;1,400..600&family=Spectral:ital,wght@0,300..600;1,300..600&family=DM+Sans:opsz,wght@9..40,300..600&family=Work+Sans:ital,wght@0,300..600;1,300..600&family=Manrope:wght@300..600&family=IBM+Plex+Mono:ital,wght@0,300..500;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..600;1,400..600&display=swap" />
 <script>
   try {
     var t = localStorage.getItem("theme");
@@ -35,28 +35,12 @@
     margin: 0;
     background-color: var(--background);
     color: var(--foreground);
-    font-family: var(--font, "Newsreader", Georgia, serif);
+    font-family: "Lora", Georgia, serif;
     -webkit-font-smoothing: antialiased;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
-
-  /* font-preview switcher (dev only) */
-  #switcher {
-    position: fixed; bottom: 1.25rem; left: 50%; transform: translateX(-50%);
-    display: flex; align-items: center; gap: 0.5rem; font-family: "Inter", sans-serif;
-    background: var(--background); border: 1px solid var(--border);
-    border-radius: 9999px; padding: 0.35rem 0.5rem 0.35rem 0.9rem;
-    font-size: 0.8rem; color: var(--muted-foreground); box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-  }
-  #switcher button {
-    background: none; border: 1px solid var(--border); border-radius: 9999px;
-    font-family: inherit; font-size: 0.8rem; color: var(--muted-foreground);
-    cursor: pointer; padding: 0.15rem 0.6rem; transition: color 0.15s, border-color 0.15s;
-  }
-  #switcher button:hover { color: var(--foreground); border-color: var(--foreground); }
-  #switcher .name { color: var(--foreground); min-width: 9.5rem; text-align: center; }
   main {
-    max-width: 32rem;
+    max-width: 40rem;
     margin: 0 auto;
     padding: 6rem 1.5rem;
   }
@@ -86,6 +70,7 @@
   #theme-toggle:hover { color: var(--foreground); }
   section { margin-top: 3.5rem; }
   .intro { font-size: 1.05rem; line-height: 1.75; }
+  @media (min-width: 38rem) { .intro p { white-space: nowrap; } }
   .intro p { margin: 0 0 1.25rem 0; }
   .intro p:last-child { margin-bottom: 0; }
   .muted { color: var(--muted-foreground); }
@@ -160,47 +145,10 @@
   </section>
 </main>
 
-<div id="switcher">
-  <span>font:</span>
-  <button id="f-prev" aria-label="Previous font">‹</button>
-  <span class="name" id="f-name">Newsreader</span>
-  <button id="f-next" aria-label="Next font">›</button>
-</div>
-
 <script>
   document.getElementById("theme-toggle").addEventListener("click", function () {
     var isDark = document.documentElement.classList.toggle("dark");
     try { localStorage.setItem("theme", isDark ? "dark" : "light"); } catch (e) {}
-  });
-
-  // Font preview switcher (remove once a font is chosen)
-  var FONTS = [
-    { name: "Newsreader", stack: '"Newsreader", Georgia, serif' },
-    { name: "Instrument Serif", stack: '"Instrument Serif", Georgia, serif' },
-    { name: "EB Garamond", stack: '"EB Garamond", Georgia, serif' },
-    { name: "Fraunces", stack: '"Fraunces", Georgia, serif' },
-    { name: "Lora", stack: '"Lora", Georgia, serif' },
-    { name: "Playfair Display", stack: '"Playfair Display", Georgia, serif' },
-    { name: "Spectral", stack: '"Spectral", Georgia, serif' },
-    { name: "Inter", stack: '"Inter", system-ui, sans-serif' },
-    { name: "DM Sans", stack: '"DM Sans", system-ui, sans-serif' },
-    { name: "Work Sans", stack: '"Work Sans", system-ui, sans-serif' },
-    { name: "Manrope", stack: '"Manrope", system-ui, sans-serif' },
-    { name: "Space Grotesk", stack: '"Space Grotesk", system-ui, sans-serif' },
-    { name: "JetBrains Mono", stack: '"JetBrains Mono", ui-monospace, monospace' },
-    { name: "IBM Plex Mono", stack: '"IBM Plex Mono", ui-monospace, monospace' },
-    { name: "Space Mono", stack: '"Space Mono", ui-monospace, monospace' },
-  ];
-  var fi = 0;
-  function showFont() {
-    document.body.style.setProperty("--font", FONTS[fi].stack);
-    document.getElementById("f-name").textContent = FONTS[fi].name;
-  }
-  document.getElementById("f-prev").addEventListener("click", function () {
-    fi = (fi - 1 + FONTS.length) % FONTS.length; showFont();
-  });
-  document.getElementById("f-next").addEventListener("click", function () {
-    fi = (fi + 1) % FONTS.length; showFont();
   });
 </script>
 </body>
