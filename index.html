@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Douglas Chen — Software Engineer</title>
+<meta name="description" content="Douglas Chen is a computer science student at UBC and software engineer building AI systems and web infrastructure." />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap" />
+<script>
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+      document.documentElement.classList.add("dark");
+    }
+  } catch (e) {}
+</script>
+<style>
+  :root {
+    --background: oklch(0.965 0.012 85);
+    --foreground: oklch(0.28 0.02 70);
+    --muted-foreground: oklch(0.52 0.02 75);
+    --border: oklch(0.88 0.015 85);
+  }
+  html.dark {
+    --background: oklch(0.22 0.012 70);
+    --foreground: oklch(0.9 0.018 85);
+    --muted-foreground: oklch(0.65 0.02 80);
+    --border: oklch(0.32 0.014 70);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: "Newsreader", Georgia, serif;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  main {
+    max-width: 32rem;
+    margin: 0 auto;
+    padding: 6rem 1.5rem;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .id { display: flex; align-items: center; gap: 0.75rem; }
+  .id img {
+    height: 2.25rem;
+    width: 2.25rem;
+    border-radius: 9999px;
+    object-fit: cover;
+    filter: grayscale(1);
+  }
+  .id h1 { font-size: 1.125rem; font-weight: 400; margin: 0; }
+  #theme-toggle {
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  #theme-toggle:hover { color: var(--foreground); }
+  section { margin-top: 3.5rem; }
+  .intro { font-size: 1.05rem; line-height: 1.75; }
+  .intro p { margin: 0 0 1.25rem 0; }
+  .intro p:last-child { margin-bottom: 0; }
+  .muted { color: var(--muted-foreground); }
+  .label {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+    margin: 0;
+  }
+  .label-body { margin-top: 0.75rem; line-height: 1.6; }
+  ul { list-style: none; margin: 0.75rem 0 0 0; padding: 0; }
+  li { margin: 0 0 0.4rem 0; }
+  a.link-quiet {
+    color: var(--muted-foreground);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, var(--muted-foreground) 35%, transparent);
+    text-underline-offset: 3px;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  }
+  a.link-quiet:hover { color: var(--foreground); text-decoration-color: var(--foreground); }
+  .badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+    border: 1px solid var(--border);
+    border-radius: 0.25rem;
+    padding: 0.05rem 0.4rem;
+    margin-left: 0.4rem;
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="id">
+      <img src="pfp.png" alt="Douglas Chen" />
+      <h1>Douglas Chen</h1>
+    </div>
+    <button id="theme-toggle" aria-label="Toggle dark mode">☀ / ☾</button>
+  </header>
+
+  <section class="intro">
+    <p>
+      Hi, I'm Douglas. I like building things that quietly do the boring
+      parts of someone's job — usually with AI, usually a little scrappier
+      than they need to be.
+    </p>
+    <p class="muted">
+      I'm studying computer science at UBC and spend most of my time
+      somewhere between a terminal, a whiteboard, and a rice cooker.
+    </p>
+  </section>
+
+  <section>
+    <p class="label">Now</p>
+    <p class="label-body">
+      Interning at
+      <a href="https://www.nimblerx.com" target="_blank" rel="noreferrer" class="link-quiet">NimbleRx</a>.
+      Tinkering with small agents that fact-check things they probably
+      shouldn't be trusted with yet.
+    </p>
+  </section>
+
+  <section>
+    <p class="label">Elsewhere</p>
+    <ul>
+      <li><a href="mailto:douglas@ichen.ca" class="link-quiet">douglas@ichen.ca</a></li>
+      <li><a href="https://www.github.com/douglasichen" target="_blank" rel="noreferrer" class="link-quiet">github</a></li>
+      <li><a href="https://www.linkedin.com/in/douglasichen/" target="_blank" rel="noreferrer" class="link-quiet">linkedin</a></li>
+      <li><a href="resume.pdf" class="link-quiet">resume</a><span class="muted"> — if you're into that sort of thing</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="label">Archived</p>
+    <ul>
+      <li>
+        <a href="https://github.com/douglasichen/portfolio" target="_blank" rel="noreferrer" class="link-quiet">portfolio</a>
+        <span class="badge">archived</span>
+      </li>
+      <li>
+        <a href="https://github.com/douglasichen/portfolio-v2.0" target="_blank" rel="noreferrer" class="link-quiet">portfolio-v2.0</a>
+        <span class="badge">archived</span>
+      </li>
+    </ul>
+  </section>
+</main>
+
+<script>
+  document.getElementById("theme-toggle").addEventListener("click", function () {
+    var isDark = document.documentElement.classList.toggle("dark");
+    try { localStorage.setItem("theme", isDark ? "dark" : "light"); } catch (e) {}
+  });
+</script>
+</body>
+</html>
