@@ -101,6 +101,43 @@
   .wins .cta { display: inline-flex; color: var(--muted-foreground); transition: color 0.2s ease; }
   .wins .cta:hover { color: var(--foreground); }
   .wins .cta svg { width: 1rem; height: 1rem; stroke: currentColor; }
+
+  /* social presentation variants */
+  #social svg { stroke: currentColor; flex: none; }
+  /* 1: icons only, row */
+  .sv-iconrow { display: flex; gap: 1.25rem; }
+  .sv-iconrow a { color: var(--muted-foreground); display: inline-flex; transition: color 0.2s ease; }
+  .sv-iconrow a:hover { color: var(--foreground); }
+  .sv-iconrow svg { width: 1.15rem; height: 1.15rem; }
+  /* 2: text, dot-separated */
+  .sv-dots { line-height: 1.9; }
+  .sv-dots .sep { color: var(--muted-foreground); margin: 0 0.55rem; opacity: 0.55; }
+  /* 3: icon + label, row */
+  .sv-chiprow { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+  .sv-chiprow span { display: inline-flex; align-items: center; gap: 0.5rem; }
+  .sv-chiprow svg { width: 1rem; height: 1rem; color: var(--muted-foreground); }
+  /* 4: icon + label, stacked list */
+  .sv-list { list-style: none; margin: 0; padding: 0; }
+  .sv-list li { display: flex; align-items: center; gap: 0.65rem; margin: 0 0 0.55rem 0; }
+  .sv-list svg { width: 1rem; height: 1rem; color: var(--muted-foreground); }
+  /* 5: labeled (Elsewhere) stacked list */
+  .sv-labeled .label { margin-bottom: 0.75rem; }
+
+  /* switcher */
+  #switcher {
+    position: fixed; bottom: 1.25rem; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 0.5rem; font-family: system-ui, sans-serif;
+    background: var(--background); border: 1px solid var(--border);
+    border-radius: 9999px; padding: 0.35rem 0.5rem 0.35rem 0.9rem;
+    font-size: 0.8rem; color: var(--muted-foreground); box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  #switcher button {
+    background: none; border: 1px solid var(--border); border-radius: 9999px;
+    font-family: inherit; font-size: 0.8rem; color: var(--muted-foreground);
+    cursor: pointer; padding: 0.15rem 0.6rem; transition: color 0.15s, border-color 0.15s;
+  }
+  #switcher button:hover { color: var(--foreground); border-color: var(--foreground); }
+  #switcher .name { color: var(--foreground); min-width: 11rem; text-align: center; }
 </style>
 </head>
 <body>
@@ -150,34 +187,76 @@
     </ul>
   </section>
 
-  <section>
-    <p class="label">Elsewhere</p>
-    <ul class="links-icons">
-      <li>
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
-        <a href="mailto:douglas@ichen.ca" class="link-quiet">douglas@ichen.ca</a>
-      </li>
-      <li>
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3-.3 6.2-1.5 6.2-6.7A5.2 5.2 0 0 0 20 4.8a4.9 4.9 0 0 0-.1-3.6s-1.1-.3-3.6 1.4a12.3 12.3 0 0 0-6.6 0C7.2.9 6.1 1.2 6.1 1.2A4.9 4.9 0 0 0 6 4.8 5.2 5.2 0 0 0 4.6 8.4c0 5.2 3.2 6.4 6.2 6.7a3.4 3.4 0 0 0-.9 2.6V22"/></svg>
-        <a href="https://www.github.com/douglasichen" target="_blank" rel="noreferrer" class="link-quiet">github</a>
-      </li>
-      <li>
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        <a href="https://www.linkedin.com/in/douglasichen/" target="_blank" rel="noreferrer" class="link-quiet">linkedin</a>
-      </li>
-      <li>
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h8M8 9h2"/></svg>
-        <a href="resume.pdf" class="link-quiet">resume</a>
-      </li>
-    </ul>
-  </section>
+  <section id="social"></section>
 </main>
+
+<div id="switcher">
+  <span>links:</span>
+  <button id="s-prev" aria-label="Previous style">‹</button>
+  <span class="name" id="s-name"></span>
+  <button id="s-next" aria-label="Next style">›</button>
+</div>
 
 <script>
   document.getElementById("theme-toggle").addEventListener("click", function () {
     var isDark = document.documentElement.classList.toggle("dark");
     try { localStorage.setItem("theme", isDark ? "dark" : "light"); } catch (e) {}
   });
+
+  // Social-links presentation preview (remove once a style is chosen)
+  var LINKS = [
+    { label: "email", full: "douglas@ichen.ca", href: "mailto:douglas@ichen.ca", ext: false,
+      svg: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/>' },
+    { label: "github", full: "github", href: "https://www.github.com/douglasichen", ext: true,
+      svg: '<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3-.3 6.2-1.5 6.2-6.7A5.2 5.2 0 0 0 20 4.8a4.9 4.9 0 0 0-.1-3.6s-1.1-.3-3.6 1.4a12.3 12.3 0 0 0-6.6 0C7.2.9 6.1 1.2 6.1 1.2A4.9 4.9 0 0 0 6 4.8 5.2 5.2 0 0 0 4.6 8.4c0 5.2 3.2 6.4 6.2 6.7a3.4 3.4 0 0 0-.9 2.6V22"/>' },
+    { label: "linkedin", full: "linkedin", href: "https://www.linkedin.com/in/douglasichen/", ext: true,
+      svg: '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>' },
+    { label: "resume", full: "resume", href: "resume.pdf", ext: false,
+      svg: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h8M8 9h2"/>' },
+  ];
+  var SVG = '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">';
+  function icon(l) { return SVG + l.svg + '</svg>'; }
+  function href(l) { return 'href="' + l.href + '"' + (l.ext ? ' target="_blank" rel="noreferrer"' : ''); }
+
+  var STYLES = [
+    { name: "icons only · row", render: function () {
+      return '<div class="sv-iconrow">' + LINKS.map(function (l) {
+        return '<a ' + href(l) + ' aria-label="' + l.label + '">' + icon(l) + '</a>';
+      }).join("") + '</div>';
+    }},
+    { name: "text · dots", render: function () {
+      return '<p class="sv-dots">' + LINKS.map(function (l) {
+        return '<a ' + href(l) + ' class="link-quiet">' + l.label + '</a>';
+      }).join('<span class="sep">·</span>') + '</p>';
+    }},
+    { name: "icon + label · row", render: function () {
+      return '<div class="sv-chiprow">' + LINKS.map(function (l) {
+        return '<span>' + icon(l) + '<a ' + href(l) + ' class="link-quiet">' + l.label + '</a></span>';
+      }).join("") + '</div>';
+    }},
+    { name: "icon + label · list", render: function () {
+      return '<ul class="sv-list">' + LINKS.map(function (l) {
+        return '<li>' + icon(l) + '<a ' + href(l) + ' class="link-quiet">' + l.full + '</a></li>';
+      }).join("") + '</ul>';
+    }},
+    { name: "labeled · Elsewhere", render: function () {
+      return '<div class="sv-labeled"><p class="label">Elsewhere</p><ul class="sv-list">' + LINKS.map(function (l) {
+        return '<li>' + icon(l) + '<a ' + href(l) + ' class="link-quiet">' + l.full + '</a></li>';
+      }).join("") + '</ul></div>';
+    }},
+  ];
+  var si = 0;
+  function showStyle() {
+    document.getElementById("social").innerHTML = STYLES[si].render();
+    document.getElementById("s-name").textContent = STYLES[si].name;
+  }
+  document.getElementById("s-prev").addEventListener("click", function () {
+    si = (si - 1 + STYLES.length) % STYLES.length; showStyle();
+  });
+  document.getElementById("s-next").addEventListener("click", function () {
+    si = (si + 1) % STYLES.length; showStyle();
+  });
+  showStyle();
 </script>
 </body>
 </html>
