@@ -102,6 +102,11 @@
   .wins .cta:hover { color: var(--foreground); }
   .wins .cta svg { width: 1rem; height: 1rem; stroke: currentColor; }
 
+  .projects { list-style: none; margin: 0.75rem 0 0 0; padding: 0; }
+  .projects li { margin: 0 0 1rem 0; }
+  .projects .link-quiet { color: var(--foreground); text-decoration-color: color-mix(in oklab, var(--foreground) 35%, transparent); }
+  .projects .proj-desc { margin: 0.2rem 0 0 0; line-height: 1.55; }
+
   .sv-chiprow { display: flex; flex-wrap: wrap; gap: 1.25rem; }
   .sv-chiprow span { display: inline-flex; align-items: center; gap: 0.5rem; }
   .sv-chiprow svg { width: 1rem; height: 1rem; stroke: currentColor; color: var(--muted-foreground); flex: none; }
@@ -128,6 +133,20 @@
       <a href="https://www.nimblerx.com" target="_blank" rel="noreferrer" class="link-quiet">NimbleRx (YC W15)</a>.
       Building the context harness and AI agents to automate customer triage.
     </p>
+  </section>
+
+  <section>
+    <p class="label">Projects</p>
+    <ul class="projects">
+      <li>
+        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7424145830577729536/" target="_blank" rel="noreferrer" class="link-quiet">Resume Fact-Checker</a>
+        <p class="proj-desc">An AI agent that fact-checks resumes against live web sources — hit 1.5K users in its first 24 hours.</p>
+      </li>
+      <li>
+        <a href="https://github.com/douglasichen/ubceventscdk" target="_blank" rel="noreferrer" class="link-quiet">Free Food @ UBC</a>
+        <p class="proj-desc">Aggregates free-food events from 400+ campus orgs by scraping 5K+ Instagram posts — 3K visits in two weeks.</p>
+      </li>
+    </ul>
   </section>
 
   <section>
