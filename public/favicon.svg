@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .bg { fill: #f4efe3; }   /* beige background (light) */
+    .fg { fill: #443e36; }   /* espresso letter (light) */
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #302c28; } /* espresso background (dark) */
+      .fg { fill: #e8e1d1; } /* cream letter (dark) */
+    }
+  </style>
+  <rect class="bg" width="32" height="32" rx="7" />
+  <text class="fg" x="16" y="23" font-family="Georgia, 'Times New Roman', serif" font-size="21" font-weight="600" text-anchor="middle">D</text>
+</svg>
