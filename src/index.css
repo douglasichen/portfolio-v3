@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: oklch(0.965 0.012 85);
+  --foreground: oklch(0.28 0.02 70);
+  --muted-foreground: oklch(0.52 0.02 75);
+  --border: oklch(0.88 0.015 85);
+}
+html.dark {
+  --background: oklch(0.22 0.012 70);
+  --foreground: oklch(0.9 0.018 85);
+  --muted-foreground: oklch(0.65 0.02 80);
+  --border: oklch(0.32 0.014 70);
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground font-serif antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
